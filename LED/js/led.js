@@ -18,11 +18,11 @@ function connect() {
         })
         .then(server => {
             console.log('Getting Service  - Light control...');
-            return server.getPrimaryService(0x1800);
+            return server.getPrimaryService();
         })
         .then(service => {
             console.log('Getting Characteristic - Light control...');
-            return service.getCharacteristic(0x1801);
+            return service.getCharacteristic();
         })
         .then(characteristic => {
             console.log('All ready!');
