@@ -8,7 +8,7 @@ function connect() {
 		console.log('Reguesting Bluetooth device');
 		navigator.bluetooth.requestDevice(
 		{
-			filters: [{localName: LED}]
+			filters: [{localName: 'LED'}]
 		})
 		.then(device => {
 			console.log('Found ' + device.name);
