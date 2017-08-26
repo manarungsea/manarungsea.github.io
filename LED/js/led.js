@@ -29,6 +29,7 @@ function connect() {
             ledCharacteristic = characteristic;
 			console.log('All ready!' + ledCharacteristic);
             // onConnected();
+			togglePower();
         })
         .catch(error => {
             console.log('Argh! ' + error);
@@ -36,22 +37,22 @@ function connect() {
 }
 
 function powerOn() {
-  let data = 1 ;
+  let data = new Uint8Array([0x01]); 
  return ledCharacteristic.writeValue(data)
       .catch(err => console.log('Error when powering on! ', err))
       .then(() => {
           poweredOn = true;
-          toggleButtons();
+         // toggleButtons();
       });
 }
 
 function powerOff() {
-  let data = 0;
+  let data = new Uint8Array([0x0]);
   return ledCharacteristic.writeValue(data)
       .catch(err => console.log('Error when switching off! ', err))
       .then(() => {
           poweredOn = false;
-          toggleButtons();
+         // toggleButtons();
       });
 }
 
