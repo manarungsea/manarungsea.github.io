@@ -13,7 +13,7 @@ function connect() {
 		.then(device => {
 			console.log('Found ' + device.name);
 			console.log('Connecting to Gatt server.... ');
-			device.addEventListener('gattserverdisconnected', onDisconnected)
+			// device.addEventListener('gattserverdisconnected', onDisconnected)
             return device.gatt.connect();
         })
         .then(server => {
@@ -35,8 +35,8 @@ function connect() {
 }
 
 function powerOn() {
-  let data = new Uint8(1);
-  return ledCharacteristic.writeValue(data)
+  let data = 1 ;
+ return ledCharacteristic.writeValue(data)
       .catch(err => console.log('Error when powering on! ', err))
       .then(() => {
           poweredOn = true;
@@ -45,7 +45,7 @@ function powerOn() {
 }
 
 function powerOff() {
-  let data = new Uint8(0);
+  let data = 0;
   return ledCharacteristic.writeValue(data)
       .catch(err => console.log('Error when switching off! ', err))
       .then(() => {
