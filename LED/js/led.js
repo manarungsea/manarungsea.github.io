@@ -22,7 +22,7 @@ function connect() {
         })
         .then(service => {
             console.log('Getting Characteristic - Light control...');
-            return service.getCharacteristic();
+            return service.getCharacteristic('19b10001-e8f2-537e-4f6c-d104768a1214');
         })
         .then(characteristic => {
             
