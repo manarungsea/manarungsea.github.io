@@ -18,11 +18,11 @@ function connect() {
         })
         .then(server => {
             console.log('Getting Service  - Light control...');
-            return server.getPrimaryService();
+            return server.getPrimaryService('19b10000-e8f2-537e-4f6c-d104768a1214');
         })
         .then(service => {
             console.log('Getting Characteristic - Light control...');
-            return service.getCharacteristic();
+            return service.getCharacteristic("19b10001-e8f2-537e-4f6c-d104768a1214");
         })
         .then(characteristic => {
             console.log('All ready!');
