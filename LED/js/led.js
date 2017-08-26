@@ -27,7 +27,7 @@ function connect() {
         .then(characteristic => {
             console.log('All ready!');
             ledCharacteristic = characteristic;
-            onConnected();
+            // onConnected();
         })
         .catch(error => {
             console.log('Argh! ' + error);
