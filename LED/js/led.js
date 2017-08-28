@@ -60,9 +60,9 @@ function powerOff() {
 function togglePower() {
     if (poweredOn) {
         powerOff();
-		console.log('data reset" + data);
+		console.log('data reset' , data);
     } else {
         powerOn();
-		console.log('data set" + data);
+		console.log('data set' , data);
     }
 }
