@@ -29,7 +29,7 @@ function connect() {
             ledCharacteristic = characteristic;
 			console.log('All ready!' + ledCharacteristic);
             // onConnected();
-			togglePower();
+			//togglePower();
         })
         .catch(error => {
             console.log('Argh! ' + error);
@@ -43,6 +43,7 @@ function powerOn() {
       .then(() => {
           poweredOn = true;
          // toggleButtons();
+		 togglePower();
       });
 }
 
