@@ -52,7 +52,7 @@ function powerOff() {
       .catch(err => console.log('Error when switching off! ', err))
       .then(() => {
           poweredOn = false;
-         // toggleButtons();
+          toggleButtons();
       });
 }
 
