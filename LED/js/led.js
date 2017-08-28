@@ -27,9 +27,9 @@ function connect() {
         .then(characteristic => {
             
             ledCharacteristic = characteristic;
-			console.log('All ready!' + ledCharacteristic);
+			console.log('All ready!');
             // onConnected();
-			//togglePower();
+			togglePower();
         })
         .catch(error => {
             console.log('Argh! ' + error);
@@ -60,9 +60,9 @@ function powerOff() {
 function togglePower() {
     if (poweredOn) {
         powerOff();
-		console.log('data reset' + data);
+		
     } else {
         powerOn();
-		console.log('data set' + data);
+		
     }
 }
