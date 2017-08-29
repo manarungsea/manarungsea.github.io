@@ -42,13 +42,14 @@ function powerOn() {
       .catch(err => console.log('Error when powering on! ', err))
       .then(() => {
           poweredOn = true;
+		  console.log(data);
          // toggleButtons();
 		 //togglePower();
       });
 }
 
 function powerOff() {
-  //let data = new Uint8Array([128,1,1]);
+  let data = new Uint8Array([128,1,1]);
   return ledCharacteristic.writeValue(data)
       .catch(err => console.log('Error when switching off! ', err))
       .then(() => {
