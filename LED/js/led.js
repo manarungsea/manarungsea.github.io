@@ -49,8 +49,8 @@ function powerOn() {
 }
 
 function powerOff() {
-  //let data = new Uint8Array([128,1,1]);
-  //return ledCharacteristic.writeValue(data)
+  let data = new Uint8Array([0,1,1]);
+  return ledCharacteristic.writeValue(data)
       .catch(err => console.log('Error when switching off! ', err))
       .then(() => {
           poweredOn = false;
