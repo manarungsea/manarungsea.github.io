@@ -1,14 +1,15 @@
-
+(function() {
 
   function setupUI() {
 
+	let phyobj =  new BLE(),
       connectButton = document.getElementById('connectBtn'),
-      switchButton = document.getElementById('switchBtn'),
+      switchButton = document.getElementById('switchBtn');
       
 
     connectButton.addEventListener('click', () => {
       connectButton.innerHTML = 'CONNECTING...';
-      connect()
+      phyobj.connect()
         .then(() => {
           connectButton.innerHTML = 'CONNECTED';
         })
@@ -17,7 +18,7 @@
         });
     });
 
-    switchButton.addEventListener('click',togglePower);
+    switchButton.addEventListener('click', phyobj.togglePower);
     
   }
 
@@ -32,6 +33,6 @@
   }
 
   setupUI();
-  //installServiceWorker();
+  installServiceWorker();
 
-
+})();
