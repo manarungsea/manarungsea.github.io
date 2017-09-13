@@ -1,12 +1,20 @@
-'use strict';
-let BLE = function() {
+(function() {
+	'use strict';
 
+	class BLE {
+
+		constructor() {
+			this.dustServiceUUID = "'19b10000-e8f2-537e-4f6c-d104768a1214'";
+			this.device = null;
+			this.server = null;
+			
 	let ledCharacteristic = null;
 	let motorCharacteristic = null;
 	let poweredOn = false;
 	let poweredOff = true;
-
-	function connect() {
+		}
+		
+	connect() {
 		console.log('Reguesting Bluetooth device');
 		navigator.bluetooth.requestDevice(
 		{
@@ -50,24 +58,25 @@ let BLE = function() {
 		});
 	}
 		
-		function readLEDchar(characteristic) {
+		readLEDchar(characteristic) {
 			ledCharacteristic = characteristic;
 			
 			console.log('> ledCharacteristic ' + characteristic );
 		}
-		function readMOTORchar(characteristic) {
+		
+		readMOTORchar(characteristic) {
 			motorCharacteristic = characteristic;
 			
 			console.log('> motorCharacteristic ' + characteristic );
 		}
 		    
 
-		function onDisconnected(event) {
+		onDisconnected(event) {
 		// Object event.target is Bluetooth Device getting disconnected.
 			console.log('> Bluetooth Device disconnected');
 		}
 
-	function powerOn() {
+	 powerOn() {
   //let data = new Uint8Array([20,1,0]);
 	let data = Uint8Array.of(50,1,0);
 	return ledCharacteristic.writeValue(data)
@@ -80,7 +89,7 @@ let BLE = function() {
 		});
 	}
 
-	function powerOff() {
+	powerOff() {
 		let data = new Uint8Array([0,1,1]);
 		return ledCharacteristic.writeValue(data)
       .catch(err => console.log('Error when switching off! ', err))
@@ -90,7 +99,7 @@ let BLE = function() {
 		});
 	}
 
-	function togglePower() {
+	togglePower() {
 		if (poweredOn) {
 			powerOff();
 		
@@ -101,3 +110,7 @@ let BLE = function() {
 	}
 
 }
+
+window.ble = new BLE();
+
+})();

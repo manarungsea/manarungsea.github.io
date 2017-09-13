@@ -2,14 +2,14 @@
 
   function setupUI() {
 
-	let phyobj =  new BLE(),
+	
       connectButton = document.getElementById('connectBtn'),
       switchButton = document.getElementById('switchBtn');
       
 
     connectButton.addEventListener('click', () => {
       connectButton.innerHTML = 'CONNECTING...';
-      phyobj.connect()
+      ble.connect()
         .then(() => {
           connectButton.innerHTML = 'CONNECTED';
         })
@@ -18,7 +18,7 @@
         });
     });
 
-    switchButton.addEventListener('click', phyobj.togglePower);
+    switchButton.addEventListener('click', ble.togglePower);
     
   }
 
