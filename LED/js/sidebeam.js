@@ -20,8 +20,8 @@ var BLE = {
             return server.getPrimaryService('19b10000-e8f2-537e-4f6c-d104768a1214');
         })
         .then(service => {
-            console.log('Getting Characteristic LED and MOTOR');
-            return service.getCharacteristic();
+            console.log('Getting Characteristic LED and MOTOR' );
+            return service.getCharacteristics();
         })
 		
 		.then(characteristics => {
