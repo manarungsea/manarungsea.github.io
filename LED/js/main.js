@@ -3,13 +3,14 @@
   function setupUI() {
 
 	
+	
       connectButton = document.getElementById('connectBtn'),
       switchButton = document.getElementById('switchBtn');
       
 
     connectButton.addEventListener('click', () => {
       connectButton.innerHTML = 'CONNECTING...';
-      ble.connect()
+      BLE.connect()
         .then(() => {
           connectButton.innerHTML = 'CONNECTED';
         })
@@ -18,7 +19,7 @@
         });
     });
 
-    switchButton.addEventListener('click', ble.togglePower);
+    switchButton.addEventListener('click', BLE.togglePower);
     
   }
 

@@ -1,20 +1,9 @@
-(function() {
-	'use strict';
-
-	class BLE {
-
-		constructor() {
-			this.dustServiceUUID = "'19b10000-e8f2-537e-4f6c-d104768a1214'";
-			this.device = null;
-			this.server = null;
-			
-	let ledCharacteristic = null;
-	let motorCharacteristic = null;
-	let poweredOn = false;
-	let poweredOff = true;
-		}
-		
-	connect() {
+'use strict';
+var BLE = {
+	ServiceUUID : "'19b10000-e8f2-537e-4f6c-d104768a1214'",
+	ledCharacteristic : null,
+	motorCharactristic : null,
+	connect: function() {
 		console.log('Reguesting Bluetooth device');
 		navigator.bluetooth.requestDevice(
 		{
@@ -48,38 +37,53 @@
 					queue = queue.then(_ => readMOTORchar(characteristic));
 					break;
 					
-				default: log('> Unknown Characteristic: ' + characteristic.uuid);
+				default: console.log('> Unknown Characteristic: ' + characteristic.uuid);
 				}
 			});
 			return queue;
 		})
 		.catch(error => {
-			log('Argh!' + error);
+			console.log('Argh!' + error);
 		});
-	}
+	},
 		
-		readLEDchar(characteristic) {
-			ledCharacteristic = characteristic;
+	togglePower: function() {
+		var poweredOn = true;
+		 var poweredOff = false;
+		if (poweredOn) {
+			 powerOff();
+		
+		} else {
+			powerOn();
+		
+		}
+	}
+
+		
+};
+		
+		function readLEDchar(characteristic) {
+			BLE.ledCharacteristic = characteristic;
 			
 			console.log('> ledCharacteristic ' + characteristic );
 		}
 		
-		readMOTORchar(characteristic) {
-			motorCharacteristic = characteristic;
+		function readMOTORchar(characteristic) {
+			BLE.motorCharacteristic = characteristic;
 			
 			console.log('> motorCharacteristic ' + characteristic );
 		}
 		    
 
-		onDisconnected(event) {
+		function onDisconnected(event) {
 		// Object event.target is Bluetooth Device getting disconnected.
 			console.log('> Bluetooth Device disconnected');
 		}
 
-	 powerOn() {
+	 function powerOn() {
   //let data = new Uint8Array([20,1,0]);
-	let data = Uint8Array.of(50,1,0);
-	return ledCharacteristic.writeValue(data)
+	let data = Uint8Array.of(50,1);
+	return BLE.ledCharacteristic.writeValue(data)
       .catch(err => console.log('Error when powering on! ', err))
       .then(() => {
           poweredOn = true;
@@ -89,9 +93,9 @@
 		});
 	}
 
-	powerOff() {
-		let data = new Uint8Array([0,1,1]);
-		return ledCharacteristic.writeValue(data)
+	function powerOff() {
+		let data = new Uint8Array([0,1]);
+		return BLE.ledCharacteristic.writeValue(data)
       .catch(err => console.log('Error when switching off! ', err))
       .then(() => {
           poweredOn = false;
@@ -99,18 +103,5 @@
 		});
 	}
 
-	togglePower() {
-		if (poweredOn) {
-			powerOff();
-		
-		} else {
-			powerOn();
-		
-		}
-	}
+	
 
-}
-
-window.ble = new BLE();
-
-})();
