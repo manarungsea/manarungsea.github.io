@@ -3,6 +3,8 @@ var BLE = {
 	ServiceUUID : "'19b10000-e8f2-537e-4f6c-d104768a1214'",
 	ledCharacteristic : null,
 	motorCharactristic : null,
+	poweredOn : false,
+	
 	connect: function() {
 		console.log('Reguesting Bluetooth device');
 		navigator.bluetooth.requestDevice(
@@ -48,9 +50,8 @@ var BLE = {
 	},
 		
 	togglePower: function() {
-		var poweredOn = true;
-		 var poweredOff = false;
-		if (poweredOn) {
+		
+		if (BLE.poweredOn) {
 			 powerOff();
 		
 		} else {
@@ -82,11 +83,11 @@ var BLE = {
 
 	 function powerOn() {
   //let data = new Uint8Array([20,1,0]);
-	let data = Uint8Array.of(50,1);
+	let data = Uint8Array.of(1);
 	return BLE.ledCharacteristic.writeValue(data)
       .catch(err => console.log('Error when powering on! ', err))
       .then(() => {
-          poweredOn = true;
+          BLE.poweredOn = true;
 		  console.log(data);
          // toggleButtons();
 		 //togglePower();
@@ -94,11 +95,11 @@ var BLE = {
 	}
 
 	function powerOff() {
-		let data = new Uint8Array([0,1]);
+		let data = new Uint8Array([0]);
 		return BLE.ledCharacteristic.writeValue(data)
       .catch(err => console.log('Error when switching off! ', err))
       .then(() => {
-          poweredOn = false;
+          BLE.poweredOn = false;
           
 		});
 	}
