@@ -4,8 +4,9 @@
 
 	
 	
-      connectButton = document.getElementById('connectBtn'),
-      switchButton = document.getElementById('switchBtn');
+     var connectButton = document.getElementById('connectBtn');
+     var switchButton = document.getElementById('switchBtn');
+	 var motorButton = document.getElementById('motorBtn');
       
 
     connectButton.addEventListener('click', () => {
@@ -20,6 +21,11 @@
     });
 
     switchButton.addEventListener('click', BLE.togglePower);
+	
+	motorButton.addEventListener('click', () => {
+		motorButton.innerHTML = 'SPINNING';
+		spinMotor();
+	});
     
   }
 

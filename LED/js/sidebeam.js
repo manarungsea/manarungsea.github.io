@@ -2,7 +2,7 @@
 var BLE = {
 	ServiceUUID : "'19b10000-e8f2-537e-4f6c-d104768a1214'",
 	ledCharacteristic : null,
-	motorCharactristic : null,
+	motorCharacteristic : null,
 	poweredOn : false,
 	
 	connect: function() {
@@ -102,6 +102,16 @@ var BLE = {
           BLE.poweredOn = false;
           
 		});
+	}
+	
+	function spinMotor() {
+  //let data = new Uint8Array([20,1,0]);
+	let data = Uint8Array.of(20,1);
+	return BLE.motorCharacteristic.writeValue(data)    
+      .then(() => {
+		  console.log('motor data sent' + data);   
+		})
+		.catch(err => console.log('Error motor spin ', err));
 	}
 
 	
