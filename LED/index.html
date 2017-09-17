@@ -12,13 +12,46 @@
   </head>
   <body>
 
-    <h1>BLE LED test</h1>
+    <h1>SIDEBEAM Motor-Control test</h1>
 
     <button  id="connectBtn">Connect</button>
     <button  id="switchBtn">ON/OFF</button>
 	<button  id="motorBtn">Spin</button>
-
-    
+	<button  id="updateBtn">update</button>
+	
+	<div style="margin:auto; width:250px" >
+		<div id='inputbox' style="text-align:center"  >
+	<label for="num_rev">Rev</label> 
+    <input type = "number" id = "num_rev" min ="10" max="100"
+					step ="10" value="50">
+		<br>			
+	<label for="dir">direction</label> 
+    <input type = "number" id = "dir" min ="0" max="1"
+					step ="1" value="0">
+		<br>			
+	<label for="period">period(usec)</label> 
+    <input type = "number" id = "period" min ="50" max="200"
+					step ="50" value="50">
+		</div>
+	</div>
+	
+	<p id="demo"></p>
+	
+	<script>
+	var updateButton = document.getElementById('updateBtn');
+	
+	updateButton.addEventListener('click', get_numrev);
+	
+	function get_numrev(){
+		var MotorParam = [
+		  document.getElementById('num_rev').valueAsNumber,
+		  document.getElementById('dir').valueAsNumber,
+		  document.getElementById('period').valueAsNumber,
+		  ]
+       return document.getElementById("demo").innerHTML = "Motor array is " + 
+	         MotorParam;
+	}
+	</script>
     <script src="js/sidebeam.js"></script>
 	<script src="js/main.js"></script>
 	
