@@ -107,11 +107,12 @@ var BLE = {
 	function spinMotor() {
   //let data = new Uint8Array([20,1,0]);
 	//let data = Uint8Array.of(200,1);
-	let data = Uint8Array.of(
-		  document.getElementById('num_rev').valueAsNumber,
-		  document.getElementById('dir').valueAsNumber,
-		  document.getElementById('period').valueAsNumber,
-		  )
+	let r = document.getElementById('num_rev').valueAsNumber,
+	    g = document.getElementById('dir').valueAsNumber,
+		b = document.getElementById('period').valueAsNumber;
+	let data = Uint8Array.of(r,g,b);
+		  
+		  
 	return BLE.motorCharacteristic.writeValue(data) 
 		
       .then(() => {
