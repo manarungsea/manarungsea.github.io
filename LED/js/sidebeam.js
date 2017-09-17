@@ -110,6 +110,8 @@ var BLE = {
 	let r = document.getElementById('num_rev').valueAsNumber,
 	    g = document.getElementById('dir').valueAsNumber,
 		b = document.getElementById('period').valueAsNumber;
+		let data = new Uint8Array([r,g,b]);
+		console.log('motor data sent' + data);
 	//let data = Uint8Array.of(r,g,b);
 		  
 		  
