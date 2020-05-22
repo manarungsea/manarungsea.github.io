@@ -13,7 +13,7 @@ function connect() {
 		.then(device => {
 			console.log('Found ' + device.name);
 			console.log('Connecting to Gatt server.... ');
-			// device.addEventListener('gattserverdisconnected', onDisconnected)
+			device.addEventListener('gattserverdisconnected', onDisconnected)
             return device.gatt.connect();
         })
         .then(server => {
@@ -29,15 +29,21 @@ function connect() {
             ledCharacteristic = characteristic;
 			console.log('All ready!');
             // onConnected();
-			togglePower();
+			//togglePower();
         })
         .catch(error => {
             console.log('Argh! ' + error);
         });
 }
 
+function onDisconnected(event) {
+  // Object event.target is Bluetooth Device getting disconnected.
+  console.log('> Bluetooth Device disconnected');
+}
+
 function powerOn() {
-  let data = new Uint8Array([20,1,0]); 
+  //let data = new Uint8Array([20,1,0]);
+	let data = Uint8Array.of(50,1,0);
  return ledCharacteristic.writeValue(data)
       .catch(err => console.log('Error when powering on! ', err))
       .then(() => {

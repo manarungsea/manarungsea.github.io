@@ -15,12 +15,14 @@ self.addEventListener('install', event => {
               '/css/styles.css',
               '/js/sidebeam.js',
               '/js/main.js',
+			  /*
               '/images/app-icon-48.png',
               '/images/app-icon-72.png',
               '/images/app-icon-96.png',
               '/images/app-icon-144.png',
               '/images/app-icon-168.png',
               '/images/app-icon-192.png'
+			  */
             ]);
         }
       );
